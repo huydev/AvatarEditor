@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=640,target-densitydpi=device-dpi,maximum-scale=1.0, user-scalable=no" name="viewport">
+  <title>avatar editor</title>
+  <style>
+    body{
+      margin: 0;
+      background: rgba(0,0,0,.5);
+    }
+    .head-box{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 400px;
+      background: #fff;
+      transform: translate(-50%, -50%);
+      border-radius: 5px;
+      box-shadow: 0 1px 5px #999;
+      padding: 30px 0;
+    }
+    .head-box>.tit{
+      font-size: 24px;
+      text-align: center;
+    }
+    .head-box>.content{
+      position: relative;
+      margin: 0 auto;
+      width: 240px;
+      height: 240px;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <div class="head-box">
+    <div class="tit">编辑头像</div>
+    <input type="file" id="test">
+    <div class="content"></div>
+    <div class="opt"><button id="btnj">-</button><button id="btnjj">+</button></div>
+    <div class="fot"><button id="btn">确定</button></div>
+  </div>
+  <script src="avatarEditor.js"></script>
+  <script>
+    var ae = new AvatarEditor({
+      container: '.content',
+      fileinput: '#test',
+      uploadcallback: function(input){
+        //input.parentNode.removeChild(input);
+      }
+    });
+    document.querySelector('#btnj').addEventListener('click', function(){
+      ae.zoomOut();
+    });
+
+    document.querySelector('#btnjj').addEventListener('click', function(){
+      ae.zoomIn();
+    });
+
+    document.querySelector('#btn').addEventListener('click', function(){
+      var imgData = ae.toImg();
+
+      var image = document.createElement('img');
+      image.src = imgData;
+      document.body.appendChild(image);
+    });
+  </script>
+</body>
+</html>
