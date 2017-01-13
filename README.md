@@ -23,3 +23,16 @@ zoomOut 缩小
 zoomIn 放大
 
 toImg 获得图片数据
+
+## 使用方法
+
+```
+var ae = new AvatarEditor({
+  container: '.content',
+  fileinput: '#test',
+  uploadcallback: function(input){
+    //input.parentNode.removeChild(input);
+  }
+});
+```
+更多详情，参考demo。
